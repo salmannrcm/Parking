@@ -1,0 +1,44 @@
+using System;
+
+namespace Parking
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            Garage car1 = new Garage {count = 16, price = 2};
+            Garage car2 = new Garage { count = 3, price = 2 };
+            Garage car3 = new Garage { count = 24, price = 2 };
+            Console.WriteLine(car1);
+            Console.WriteLine(car2);
+            Console.WriteLine(car3);
+        }
+    }
+    class Garage
+    {
+        public double price { get; set; }
+        public int count { get; set; }
+        public static double CalculateCharges(int count, double price)
+        {
+            if (count == 24)
+                return 10;
+            if (count <= 3)
+                return price;
+            else
+            {
+                while (count > 0)
+                {
+                    price += 0.5;
+                    count--;
+                }
+                return price;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "Total Time Parked:  " + count + "H , Total fee : " + CalculateCharges(count, price);
+        }
+        
+    }
+}
